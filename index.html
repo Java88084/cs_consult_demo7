@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CheckBox Tree Demo</title>
+	<link rel="stylesheet" type="text/css" href="./themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="./themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="./demo.css">
+	<script type="text/javascript" src="./jquery.min.js"></script>
+	<script type="text/javascript" src="./jquery.easyui.min.js"></script>
+</head>
+<body>
+<!--
+	<h2>CheckBox Tree</h2>
+	<p>Tree nodes with check boxes.</p>
+	
+	<div style="margin:20px 0;">
+		<a href="#" class="easyui-linkbutton" onclick="getChecked()">GetChecked</a> 
+	</div>
+
+
+	<div style="margin:10px 0">
+		<input type="checkbox" checked onchange="$('#tt').tree({cascadeCheck:$(this).is(':checked')})">CascadeCheck 
+		<input  type="checkbox" onchange="$('#tt').tree({onlyLeafCheck:$(this).is(':checked')})">OnlyLeafCheck
+	</div>
+
+
+	<div class="easyui-panel" style="padding:0px">
+-->
+	<div style="padding:0px">
+		<ul id="tt" class="easyui-tree" ></ul>
+	</div>
+
+	<script type="text/javascript">
+		function getChecked(){
+
+
+
+			// var nodes = $('#tt').tree('getParent');
+			// nodes = $('#tt').tree('getRoots');
+			// var s = '';
+			// for(var i=0; i<nodes.length; i++){
+			// 	if (s != '') s += ',';
+			// 	s += nodes[i].text;
+		    // }
+
+            var s1 = '';
+
+
+
+            //取根結點的ID(勾選)
+            var children = $('#tt').tree('getRoots');
+            for(var c = 0; c < children.length; c++){
+            if (children[c].checked==true){
+                s1 += children[c].id;
+            }};
+
+
+            //取根結點的ID(不確定)
+            var nodes = $('#tt').tree('getChecked','indeterminate');	
+			for(var i=0; i<nodes.length; i++){
+				if (s1 != ''){ s1 += ','};
+				s1 += nodes[i].id;
+			}
+			alert(s1);
+    
+    
+    
+    }
+
+		$('#tt').tree({
+			animate:true,
+			cascadeCheck:true,
+			checkbox:true,
+			formatter:function(node){
+                        var s = node.text;
+                        if (node.children){
+                            s += '&nbsp;<span style=\'color:blue\'>(' + node.children.length + ')</span>';
+                        }
+                        return s;
+                        },
+			data: [
+					  {
+						"id": 0,
+						"text": "基金公司",
+						"state": "open",
+						"children": [
+						  {
+							"id": 1,
+							"text": "W2(MFS)",
+							"state": "closed",
+							"children": [
+							  {
+								"id": 11,
+								"text": "基金1(FXX)"
+							  },
+							  {
+								"id": 12,
+								"text": "基金2(FXX)"
+							  }
+							]
+						  },
+						  {
+							"id": 2,
+							"text": "W3(Ninety One)",
+							"state": "closed",
+							"children": [
+							  {
+								"id": 21,
+								"text": "基金1(FXX)"
+							  },
+							  {
+								"id": 22,
+								"text": "基金2(FXX)"
+							  },
+							  {
+								"id": 23,
+								"text": "基金3(FXX)"
+							  }
+							]
+						  },
+						  {
+							"id": 3,
+							"text": "W4(Aberdeen)",
+							"state": "closed",
+							"children": [
+							  {
+								"id": 21,
+								"text": "基金1(FXX)"
+							  },
+							  {
+								"id": 22,
+								"text": "基金2(FXX)"
+							  }
+							]
+						  },
+						  {
+							"id": 4,
+							"text": "W7(FranklinUS)",
+							"state": "closed",
+							"children": [
+							  {
+								"id": 21,
+								"text": "基金1(FXX)"
+							  },
+							  {
+								"id": 22,
+								"text": "基金1(FXX)"
+							  },
+							  {
+								"id": 23,
+								"text": "基金3(FXX)"
+							  }
+							]
+						  },
+						  {
+							"id": 5,
+							"text": "W8(Janus H.S.)",
+							"state": "closed",
+							"children": [
+							  {
+								"id": 21,
+								"text": "基金1(FXX)"
+							  },
+							  {
+								"id": 22,
+								"text": "基金2(FXX)"
+							  },
+							  {
+								"id": 23,
+								"text": "基金3(FXX)"
+							  }
+							]
+						  },
+						  {
+							"id": 6,
+							"text": "X1(PineBridge)",
+							"state": "closed",
+							"children": [
+							  {
+								"id": 21,
+								"text": "基金1(FXX)"
+							  },
+							  {
+								"id": 22,
+								"text": "基金2(FXX)"
+							  },
+							  {
+								"id": 23,
+								"text": "基金3(FXX)"
+							  }
+							]
+						  }
+						]
+					  }
+					]		
+		});
+
+//$('#tt').tree({cascadeCheck:true});
+
+	</script>
+
+
+
+</body>
+</html>
